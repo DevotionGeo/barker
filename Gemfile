@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
-  gem 'capybara'
+  gem 'rspec-rails', '~> 3.2.1'
+  gem 'capybara', '~> 2.4.4'
 end
+
+gem 'devise', '~> 3.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
