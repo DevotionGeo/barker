@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'rspec-rails', '~> 3.2.1'
   gem 'capybara', '~> 2.4.4'
+  gem 'shoulda-matchers', '~> 2.8.0'
 end
 
 gem 'devise', '~> 3.4.1'
