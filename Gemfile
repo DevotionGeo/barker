@@ -4,6 +4,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.2.1'
   gem 'capybara', '~> 2.4.4'
   gem 'shoulda-matchers', '~> 2.8.0'
+  gem 'factory_girl_rails', '~> 4.5.0'
 end
 
 gem 'devise', '~> 3.4.1'
