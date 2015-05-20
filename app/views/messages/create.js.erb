@@ -1,0 +1,4 @@
+$("#message_content").val("");
+autosize.update($("#message_content"));
+$("#messages-list > ul").prepend("<li class='list-group-item' style='display: none'><%= j @message.content %></li>");
+$("#messages-list > ul :first-child").fadeIn(1000);

@@ -14,3 +14,7 @@
  *= require_tree .
  *= require_self
  */
+
+#message-form {
+  margin-bottom: 2em;
+}

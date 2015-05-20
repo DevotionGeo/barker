@@ -18,5 +18,10 @@ module Features
       fill_in "user_password_confirmation", with: user.password
       click_button "Sign up"
     end
+
+    def post(user, message_txt)
+      fill_in "message_content", with: message_txt
+      click_button "Post"
+    end
   end
 end
