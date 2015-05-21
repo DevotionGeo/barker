@@ -1,4 +1,11 @@
-$("#message_content").val("");
-autosize.update($("#message_content"));
-$("#messages-list > ul").prepend("<li class='list-group-item' style='display: none'><%= j @message.content %></li>");
-$("#messages-list > ul :first-child").fadeIn(1000);
+var has_errors = <%= @has_errors %>;
+
+if(has_errors){
+  $("#flash").html('<%= j render partial: "shared/notice_banner" %>');
+}
+else{
+  $("#message_content").val("");
+  autosize.update($("#message_content"));
+  $("#messages-list > ul").prepend("<li class='list-group-item' style='display: none'><%= j @message.content %></li>");
+  $("#messages-list > ul :first-child").fadeIn(1000);
+}

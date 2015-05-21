@@ -8,11 +8,10 @@ class MessagesController < ApplicationController
 
   def create
     @message = current_user.messages.new(message_params)
+    @has_errors = !@message.save
 
-    if @message.save
-      respond_to { |format| format.js }
-    else
-      render :index
+    respond_to do |format|
+      format.js { flash.now[:error] = @message.errors.full_messages.to_sentence }
     end
   end
 

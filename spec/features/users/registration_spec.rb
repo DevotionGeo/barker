@@ -13,7 +13,8 @@ describe "Registration" do
       register(FactoryGirl.build(:user))
       expect(User.count).to eq(1)
       expect(page).to have_content("Welcome! You have signed up successfully.")
-      expect(page).to have_content("index de message controller")
+      expect(page).to have_selector("#message-form")
+      expect(page).to have_selector("#message_content")
     end
   end
 
@@ -24,6 +25,9 @@ describe "Registration" do
       register(FactoryGirl.build(:user))
       expect(User.count).to eq(1)
       expect(page).to have_content("Email has already been taken")
+      within("h2") do
+        expect(page).to have_content("Sign up")
+      end
     end
   end
 end
