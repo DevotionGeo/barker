@@ -35,13 +35,15 @@
 }
 
 .nav li a {
- display: inline;
- line-height: 89px;
- text-align: right;
+  font-weight: bolder;
+  font-size: 15px;
+  display: inline;
+  line-height: 89px;
+  text-align: right;
 }
 
 .nav li a:hover {
- text-decoration: underline;
+  text-decoration: underline;
 }
 
 html {
@@ -70,7 +72,7 @@ body {
   margin-bottom: 0;
   line-height: 60px;
   text-align: center;
- }
+}
 
 .footer .container p:after {
   content:" \00a9";
