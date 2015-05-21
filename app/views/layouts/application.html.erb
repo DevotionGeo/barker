@@ -2,19 +2,51 @@
 <html>
 <head>
   <title>Barker</title>
+  <link rel="icon" href="<%= image_path('logo.png') %>" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="container ">
-  <div>
-    <button>
-      <%= link_to "Sign out", destroy_user_session_path, method:"delete" %>
-    </button>
-  </div>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-<%= yield %>
+<body>
+  <nav id="top-nav" class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <div>
+            <%= image_tag "logo.png", id: "logo", alt: "Brand" %>
+            <span>BARKER</span>
+        </div>
+        </a>
+      </div>
 
+      <ul class="nav pull-right">
+        <% if user_signed_in? %>
+          <li role="presentation">
+            <%= link_to "Sign out", destroy_user_session_path, method:"delete" %>
+          </li>
+        <% elsif controller.controller_name == "sessions" %>
+          <li role="presentation">
+            <%= link_to "Sign up", new_user_registration_path %>
+          </li>
+        <% else %>
+          <li role="presentation">
+            <%= link_to "Sign in", new_user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="text-center">Barker fake copyright</p>
+    </div>
+  </footer>
 </body>
 </html>
