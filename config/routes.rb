@@ -2,11 +2,17 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    root 'devise/sessions#new'
+    authenticated  do
+      root to: 'messages#index'
+    end
+
+    unauthenticated do
+      root to: 'devise/sessions#new', as: 'unauthenticated_root'
+    end
   end
 
   resources :users, :messages
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
