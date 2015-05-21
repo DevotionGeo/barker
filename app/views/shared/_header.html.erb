@@ -1,7 +1,7 @@
 <nav id="top-nav" class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="<%= user_signed_in? ? messages_path : '/' %>">
         <div>
           <%= image_tag "logo.png", id: "logo", alt: "Brand" %>
           <span>BARKER</span>
