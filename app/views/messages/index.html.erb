@@ -14,7 +14,13 @@
     <div id="messages-list" class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
       <ul class="list-group">
         <% @messages.each do |message| %>
-          <li class="list-group-item"><%= message.content %></li>
+          <li class="list-group-item">
+            <div class="message-header">
+              <span class="profile-name"><%= current_user.profile_name %></span>
+              <span class="small muted"><%= time_ago_in_words(message.created_at) %></span>
+            </div>
+            <%= message.content %>
+          </li>
         <% end %>
       </ul>
     </div>

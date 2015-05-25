@@ -9,7 +9,7 @@ describe "create a message", js: true do
     expect(Message.count).to eq(0)
     post(user, message_txt)
 
-    within("#messages-list > ul") do
+    within("#messages-list ul") do
       expect(page).to have_content(message_txt)
     end
 
@@ -22,7 +22,7 @@ describe "create a message", js: true do
     expect(Message.count).to eq(3)
     post(user, message_txt)
 
-    within("#messages-list > ul :first-child") do
+    within("#messages-list ul li:first-child") do
       expect(page).to have_content(message_txt)
     end
 
