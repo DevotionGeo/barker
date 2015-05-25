@@ -24,9 +24,8 @@ describe "sign in" do
   context "with good credentials" do
     it "redirects messages index page" do
       sign_in(User.new(email: "smonneger@gmail.com", password: "password"))
+      expect(page.current_path).to eq(messages_path)
       expect(page).to have_content("Signed in successfully.")
-      expect(page).to have_selector("#message-form")
-      expect(page).to have_selector("#message_content")
     end
   end
 end

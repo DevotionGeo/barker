@@ -12,9 +12,8 @@ describe "Registration" do
       expect(User.count).to eq(0)
       register(FactoryGirl.build(:user))
       expect(User.count).to eq(1)
+      expect(page.current_path).to eq(messages_path)
       expect(page).to have_content("Welcome! You have signed up successfully.")
-      expect(page).to have_selector("#message-form")
-      expect(page).to have_selector("#message_content")
     end
   end
 

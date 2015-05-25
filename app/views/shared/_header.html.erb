@@ -9,18 +9,19 @@
       </a>
     </div>
 
-    <ul class="nav pull-right">
+    <ul class="nav navbar-nav pull-right">
       <% if user_signed_in? %>
-        <li role="presentation">
-          <%= link_to "Sign out", destroy_user_session_path, method:"delete" %>
+        <li>
+          <%= link_to "My account", edit_user_registration_path %>
+          <%= link_to "Sign out", destroy_user_session_path, method:"delete", class: "sign-options" %>
         </li>
       <% elsif controller.controller_name == "sessions" %>
-        <li role="presentation">
-          <%= link_to "Sign up", new_user_registration_path %>
+        <li>
+          <%= link_to "Sign up", new_user_registration_path, class: "sign-options" %>
         </li>
       <% else %>
-        <li role="presentation">
-          <%= link_to "Sign in", new_user_session_path %>
+        <li>
+          <%= link_to "Sign in", new_user_session_path, class: "sign-options" %>
         </li>
       <% end %>
     </ul>

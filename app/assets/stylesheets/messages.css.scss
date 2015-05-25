@@ -2,8 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-
 #messages-list .list-group-item {
   margin-bottom: 2em;
   background-color: white;
@@ -23,7 +21,6 @@
 #message-form textarea {
   resize: none;
 }
-
 
 #message-form {
   margin-bottom: 2em;
@@ -45,15 +42,32 @@
   height: 89px;
 }
 
-.nav li a {
-  font-weight: bolder;
-  font-size: 15px;
+.navbar-nav li a {
   display: inline;
   line-height: 89px;
-  text-align: right;
+  padding-top: 38.5px;
+  padding-bottom: 37px;
 }
 
-.nav li a:hover {
+.navbar-nav li a.sign-options {
+  display: inline;
+  line-height: 89px;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  font-weight: bolder;
+}
+
+.navbar-default .navbar-nav>li>a.sign-options {
+  margin-left: 30px;
+  color: #df691a;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.navbar-default .navbar-nav>li>a.sign-options:hover {
+  background-color: transparent;
   text-decoration: underline;
 }
 
