@@ -3,6 +3,7 @@ FactoryGirl.define do
 
   factory :message do
     content
-    user
+    author
+    receiver
   end
 end

@@ -3,12 +3,12 @@ class MessagesController < ApplicationController
   before_action :set_profile_user, only: :index
 
   def index
-    @message = current_user.messages.new
-    @messages = current_user.messages.all.sort { |a, b| b.created_at <=> a.created_at }
+    @message = current_user.sent_messages.new(author_id: current_user.id, receiver_id: @profile_user.id)
+    @messages = current_user.received_messages.all.sort { |a, b| b.created_at <=> a.created_at }
   end
 
   def create
-    @message = current_user.messages.new(message_params)
+    @message = current_user.sent_messages.new(message_params)
     @has_errors = !@message.save
 
     respond_to do |format|
@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
 
   private
     def message_params
-      params.require(:message).permit(:content)
+      params.require(:message).permit(:content, :author_id, :receiver_id)
     end
 
     def set_profile_user

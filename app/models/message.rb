@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :author, class: User
+  belongs_to :receiver, class: User
 
-  validates :content, presence: true
+  validates :content, :author, :receiver, presence: true
 end

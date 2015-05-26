@@ -4,7 +4,7 @@ describe "index page" do
   before(:each) do
     @user = FactoryGirl.create(:user_with_posts)
     sign_in(@user)
-    @messages = @user.messages.all.sort { |a, b| b.created_at <=> a.created_at }
+    @messages = @user.received_messages.all.sort { |a, b| b.created_at <=> a.created_at }
   end
 
   it "displays user's posts sorted by creation date" do

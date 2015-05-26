@@ -26,14 +26,15 @@ RSpec.describe MessagesController, type: :controller do
       it "assigns @message for current user" do
         get :index
         expect(assigns(:message)).to be_a_new(Message)
-        expect(assigns(:message).user.id).to eq(@user.id)
+        expect(assigns(:message).author_id).to eq(@user.id)
+        expect(assigns(:message).receiver_id).to eq(@user.id)
       end
 
       it "assigns @messages sorted by creation date for current user" do
         messages = []
-        messages.unshift(@user.messages.create(content: "il etait une fois"))
-        messages.unshift(@user.messages.create(content: "J'aime RoR"))
-        messages.unshift(@user.messages.create(content: "Steph Curry is the man!!!!!"))
+        messages.unshift(@user.received_messages.create(content: "il etait une fois", author_id: @user.id, receiver_id: @user.id))
+        messages.unshift(@user.received_messages.create(content: "J'aime RoR", author_id: @user.id, receiver_id: @user.id))
+        messages.unshift(@user.received_messages.create(content: "Steph Curry is the man!!!!!", author_id: @user.id, receiver_id: @user.id))
         get :index
         expect(assigns(:messages)).to eq(messages)
       end
@@ -62,8 +63,8 @@ RSpec.describe MessagesController, type: :controller do
 
       it "creates a message for current user" do
         expect {
-          xhr :post, :create, { message: { content: "Le contenu de mon message." }}
-        }.to change{ @user.messages.count }.by(1)
+          xhr :post, :create, { message: { content: "Le contenu de mon message.", author_id: @user.id, receiver_id: @user.id }}
+        }.to change{ @user.received_messages.count }.by(1)
       end
     end
   end

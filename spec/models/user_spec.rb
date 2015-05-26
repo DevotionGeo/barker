@@ -16,5 +16,6 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of :profile_name }
   it { should validate_length_of(:profile_name).is_at_least(2) }
 
-  it { should have_many :messages }
+  it { should have_many :sent_messages }
+  it { should have_many :received_messages }
 end
