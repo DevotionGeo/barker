@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MessagesController, type: :controller do
   it { should use_before_action(:authenticate_user!) }
+  it { should use_before_action(:set_profile_user) }
 
   describe "GET #index" do
     context "with no user signed in" do
@@ -35,6 +36,11 @@ RSpec.describe MessagesController, type: :controller do
         messages.unshift(@user.messages.create(content: "Steph Curry is the man!!!!!"))
         get :index
         expect(assigns(:messages)).to eq(messages)
+      end
+
+      it "assigns @profile_user" do
+        get :index
+        expect(assigns(:profile_user).id).to eq(@user.id)
       end
     end
   end
