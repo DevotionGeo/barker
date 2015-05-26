@@ -6,6 +6,13 @@ if(has_errors){
 else{
   $("#message_content").val("");
   autosize.update($("#message_content"));
-  $("#messages-list > ul").prepend("<li class='list-group-item' style='display: none'><%= j @message.content %></li>");
+  $("#messages-list > ul").prepend("" +
+    "<li class='list-group-item' style='display: none'>" +
+      "<div class='message-header'>" +
+        "<span class='profile-name'><%= j current_user.profile_name %> </span>" +
+        "<span class='small muted'><%= j time_ago_in_words(@message.created_at) %></span>" +
+      "</div>" +
+      "<%= j @message.content %>" +
+    "</li>");
   $("#messages-list > ul :first-child").fadeIn(1000);
 }
