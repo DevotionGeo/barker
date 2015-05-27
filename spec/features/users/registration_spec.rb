@@ -19,9 +19,9 @@ describe "Registration" do
 
   context "with an existing email" do
     it "shows error message if user already exists with the same email" do
-      FactoryGirl.create(:user)
+      user = FactoryGirl.create(:user)
       expect(User.count).to eq(1)
-      register(FactoryGirl.build(:user))
+      register(FactoryGirl.build(:user, email: user.email))
       expect(User.count).to eq(1)
       expect(page).to have_content("Email has already been taken")
       within("h2") do

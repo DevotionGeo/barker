@@ -1,0 +1,23 @@
+// Place all the styles related to the search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#search {
+  height: 20px;
+  width: 300px;
+  font-size: 13px;
+}
+
+#search-form {
+  margin: 0;
+  height: 86px;
+  padding-top: 35px;
+}
+
+#search-btn {
+  height: 20px;
+  vertical-align: middle;
+  font-size: 10px;
+  font-weight: bolder;
+  padding: 1px;
+}

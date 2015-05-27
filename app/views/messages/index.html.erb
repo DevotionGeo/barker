@@ -18,7 +18,7 @@
         <% @messages.each do |message| %>
           <li class="list-group-item">
             <div class="message-header">
-              <span class="profile-name"><%= current_user.profile_name %></span>
+              <span class="profile-name"><%= message.author.profile_name %></span>
               <span class="small muted"><%= time_ago_in_words(message.created_at) %></span>
             </div>
             <%= message.content %>

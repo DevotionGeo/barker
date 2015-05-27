@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
 
   validates :profile_name, uniqueness: true
   validates :first_name, :last_name, :profile_name, presence: true, length: { minimum: 2 }
+
+  def self.search(search)
+    where("(last_name || first_name || profile_name) LIKE ?", "%#{search}%")
+  end
 end

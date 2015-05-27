@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def index
     @message = current_user.sent_messages.new(author_id: current_user.id, receiver_id: @profile_user.id)
-    @messages = current_user.received_messages.all.sort { |a, b| b.created_at <=> a.created_at }
+    @messages = @profile_user.received_messages.all.sort { |a, b| b.created_at <=> a.created_at }
   end
 
   def create

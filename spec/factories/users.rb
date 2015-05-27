@@ -2,8 +2,8 @@ FactoryGirl.define do
   factory :user, aliases: [:author, :receiver] do
     first_name "Sacha"
     last_name "Monneger"
-    profile_name "satch"
-    email "smonneger@gmail.com"
+    sequence(:profile_name) { |n| "satch#{n}" }
+    sequence(:email) { |n| "email#{n}@email.com" }
     password "password"
 
       factory :user_with_posts do

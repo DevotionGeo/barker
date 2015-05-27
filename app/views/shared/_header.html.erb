@@ -8,12 +8,15 @@
       </div>
       </a>
     </div>
-
     <ul class="nav navbar-nav pull-right">
       <% if user_signed_in? %>
         <li>
           <%= link_to "My account", edit_user_registration_path %>
           <%= link_to "Sign out", destroy_user_session_path, method:"delete", class: "sign-options" %>
+          <%= form_tag(search_path, method: :get, class: "navbar-form navbar-left", id: "search-form") do %>
+            <%= text_field_tag :search, nil, class: "form-control", placeholder: "search friends" %>
+            <%= submit_tag "GO", class:"btn", id: "search-btn" %>
+          <% end %>
         </li>
       <% elsif controller.controller_name == "sessions" %>
         <li>
