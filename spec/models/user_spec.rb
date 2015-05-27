@@ -18,4 +18,7 @@ RSpec.describe User, type: :model do
 
   it { should have_many :sent_messages }
   it { should have_many :received_messages }
+
+  it { should have_many :relationships }
+  it { should have_many(:friends).through(:relationships) }
 end

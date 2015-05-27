@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526171503) do
+ActiveRecord::Schema.define(version: 20150527155337) do
 
   create_table "messages", force: true do |t|
     t.string   "content"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20150526171503) do
 
   add_index "messages", ["author_id"], name: "index_messages_on_author_id"
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"
+
+  create_table "relationships", force: true do |t|
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "friend_id"
+  end
+
+  add_index "relationships", ["friend_id"], name: "index_relationships_on_friend_id"
+  add_index "relationships", ["user_id"], name: "index_relationships_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
