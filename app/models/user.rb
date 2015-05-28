@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
   def self.search(search)
     where("(lower(last_name) || lower(first_name) || lower(profile_name)) LIKE ?", "%#{search.downcase}%")
   end
+
+  def is_allowed_to_see_profile(friend)
+    !friend.nil? && (friend.id == id || Relationship.friends?(self, friend))
+  end
 end
