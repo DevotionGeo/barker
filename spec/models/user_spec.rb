@@ -58,4 +58,13 @@ RSpec.describe User, type: :model do
       expect(user.is_allowed_to_see_profile(user)).to be(true)
     end
   end
+
+  describe "capitalize_name before_save" do
+    it "capitalizes first_name and last_name" do
+      user = FactoryGirl.create(:user, first_name: "SACHA", last_name: "MONnegEr")
+      user.save
+      expect(user.first_name).to eq("Sacha")
+      expect(user.last_name).to eq("Monneger")
+    end
+  end
 end
