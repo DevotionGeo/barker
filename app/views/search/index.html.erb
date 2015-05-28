@@ -1,6 +1,6 @@
 <div class="row">
   <div id="messages-list" class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-    <h3><%= @users.size %> results</h3>
+    <h3><%= pluralize( @users.size, 'result' ) %></h3>
     <ul class="list-group search-list">
       <% @users.each do |user| %>
         <li class="list-group-item">
