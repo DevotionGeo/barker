@@ -1,15 +1,32 @@
-<% if @message %>
-  <div id="message-form" class="row">
-    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+<div id="message-form" class="row">
+  <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <div>
+      <h4>
+        <%= @profile_user.first_name + " " + @profile_user.last_name +
+             " aka " + @profile_user.profile_name %>
+      </h4>
+    </div>
+    <% if @message %>
       <%= form_for @message, url: {action: "create"}, remote: true do |f| %>
         <%= f.text_area :content, class: "form-control", placeholder: "Bark someting... woof! woof!" %>
         <%= f.hidden_field :author_id %>
         <%= f.hidden_field :receiver_id %>
         <%= f.submit "Post", class: "btn btn-primary pull-right" %>
       <% end %>
-    </div>
+    <% elsif @relationship %>
+      <p>Hey! You and <%= @profile_user.profile_name %> are not friends.</p>
+      <%= link_to "Send a friend request",
+            relationships_path(relationship: @relationship), method: :post %>
+    <% else %>
+      <p>
+        You have already sent a friend request to <%= @profile_user.profile_name %>.
+        You will be able to see <%= @profile_user.profile_name %> profile once
+        he will respond to your request.
+      </p>
+      <%= link_to "Back to your profile", root_path %>
+    <% end %>
   </div>
-<% end %>
+</div>
 
 <% if @messages %>
   <div class="row">

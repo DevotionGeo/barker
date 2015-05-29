@@ -40,6 +40,11 @@ RSpec.describe MessagesController, type: :controller do
         expect(assigns(:message).receiver_id).to eq(@user.id)
       end
 
+      it "doesn't assign @relationship" do
+        get :index
+        expect(assigns(:relationship)).to be(nil)
+      end
+
       it "assigns @messages with received messages of current_user" do
         messages = []
         messages.unshift(@user.received_messages.create(content: "il etait une fois", author_id: @user.id, receiver_id: @user.id))
@@ -84,6 +89,13 @@ RSpec.describe MessagesController, type: :controller do
       end
 
       it_behaves_like "no/pending relationship"
+
+      it "assigns @relationship" do
+        get :index, profile_id: @user2.id
+        expect(assigns(:relationship)[:user_id]).to be(@user.id)
+        expect(assigns(:relationship)[:friend_id]).to be(@user2.id)
+        expect(assigns(:relationship)[:accepted]).to be(false)
+      end
     end
 
     context "with a signed_in user and passed profile_id is a pending friend" do
@@ -95,6 +107,11 @@ RSpec.describe MessagesController, type: :controller do
       end
 
       it_behaves_like "no/pending relationship"
+
+      it "doesn't assign @relationship" do
+        get :index, profile_id: @user2.id
+        expect(assigns(:relationship)).to be(nil)
+      end
     end
 
     context "with a signed_in user and passed profile_id is a friend" do
@@ -128,6 +145,11 @@ RSpec.describe MessagesController, type: :controller do
         messages.unshift(@user2.received_messages.create(content: "Steph Curry is the man!!!!!", author_id: @user2.id, receiver_id: @user2.id))
         get :index, profile_id: @user2.id
         expect(assigns(:messages)).to eq(messages)
+      end
+
+      it "doesn't assign @relationship" do
+        get :index, profile_id: @user2.id
+        expect(assigns(:relationship)).to be(nil)
       end
     end
   end

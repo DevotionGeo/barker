@@ -1,9 +1,6 @@
-var has_errors = <%= @has_errors %>;
-
-if(has_errors){
+<% if !@message.errors.empty? %>
   $("#flash").html('<%= j render partial: "shared/notice_banner" %>');
-}
-else{
+<% else %>
   $("#message_content").val("");
   autosize.update($("#message_content"));
   $("#messages-list > ul").prepend("" +
@@ -15,4 +12,4 @@ else{
       "<%= j @message.content %>" +
     "</li>");
   $("#messages-list > ul :first-child").fadeIn(1000);
-}
+<% end %>

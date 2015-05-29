@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, :messages
+  resources :relationships, only: [:create, :destroy]
 
   get '/messages/:profile_id', to: 'messages#index'
 
